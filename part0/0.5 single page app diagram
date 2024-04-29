@@ -1,3 +1,4 @@
+```mermaid
 sequenceDiagram
 
     title New Note Diagram
@@ -21,3 +22,4 @@ sequenceDiagram
     Server->Browser: returns [{ "content": "HTML is easy", "date": "2024-4-29" }, ... ]
 
     note over Browser: The Browser executes the eventHandler that renders the notes on display
+```
