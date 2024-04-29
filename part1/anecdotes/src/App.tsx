@@ -14,9 +14,7 @@ const App = () => {
   ]
 
   const [points, setPoints] = useState([0, 0, 0, 0, 0, 0, 0, 0])
-
   const [selected, setSelected] = useState(0)
-  const [mostVoted, setMostVoted] = useState(0)
 
   const nextAnecdote = () => {
     setSelected(Math.floor(Math.random() * anecdotes.length))
@@ -44,7 +42,6 @@ const App = () => {
       </div>
     )
   }
-
 
   return (
     <div>
