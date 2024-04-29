@@ -1,9 +1,5 @@
 import { useState } from 'react'
 
-let currentValue = 0
-let points: Array<number> = [0, 0, 0 , 0 , 0 , 0 , 0 , 0]
-
-let random = 0
 
 const App = () => {
   const anecdotes = [
@@ -17,58 +13,51 @@ const App = () => {
     'The only way to go fast, is to go well.'
   ]
 
-  const [selected, setSelected] = useState(0)
-  const [voted, selectVoted] = useState(0)
-  const [most, setMost] = useState(0)
+  const [points, setPoints] = useState([0, 0, 0, 0, 0, 0, 0, 0])
 
-  const setRandom = () => {
-    return(Math.floor(Math.random()* anecdotes.length))
-  }
-  
+  const [selected, setSelected] = useState(0)
+  const [mostVoted, setMostVoted] = useState(0)
+
   const nextAnecdote = () => {
-    random = setRandom()
-    setSelected(random)
-    currentValue = random
-    selectVoted(points[currentValue])
+    setSelected(Math.floor(Math.random() * anecdotes.length))
   }
-  
-  const vote = () => 
-  {
-      points[currentValue] += 1
-      selectVoted(points[currentValue])
-      setMost (points.indexOf(Math.max.apply(Math, points)))
+
+  const vote = () => {
+    const copy = [...points]
+    copy[selected] += 1
+    setPoints(copy)
   }
-  
-  const ShowAnecdote = () => 
-  {
-    if (most == 0){
-  
+
+  const ShowAnecdote = () => {
+    if (Math.max(...points) == 0) {
+
       return (
         <div>
-        <p> No anecdote</p>
-      </div>
+          <p> No anecdote</p>
+        </div>
       )
     }
 
     return (
       <div>
-      <p> {anecdotes[most]}</p>
-    </div>
+        <p> {anecdotes[points.indexOf(Math.max(... points))]}</p>
+      </div>
     )
   }
+
 
   return (
     <div>
       <h1>Anecdote of the day</h1>
       {anecdotes[selected]}
       <p>
-        has {voted} points
+        has {points[selected]} points
       </p>
       <div>
         <button onClick={vote}>Vote</button>
         <button onClick={nextAnecdote}>next anecdote</button>
         <h2>Anecdote with most votes</h2>
-        <ShowAnecdote/>
+        <ShowAnecdote />
       </div>
     </div>
   )
