@@ -1,0 +1,23 @@
+sequenceDiagram
+
+    title New Note Diagram
+
+    Browser->Server: HTTP get https://studies.cs.helsinki.fi/exampleapp/spa
+
+    Server->Browser: returns the HTML code
+
+    Browser->Server: HTTP get https://studies.cs.helsinki.fi/exampleapp/main.css
+
+    Server->Browser: returns the CSS
+
+    Browser->Server: HTTP get https://studies.cs.helsinki.fi/exampleapp/spa.js
+
+    Server->Browser: returns the main.js
+
+    Note over Browser: The browser starts executing the JavaScript code that fetches the JSON from the server
+
+    Browser->Server: HTTP get https://studies.cs.helsinki.fi/exampleapp/main.json
+
+    Server->Browser: returns [{ "content": "HTML is easy", "date": "2024-4-29" }, ... ]
+
+    note over Browser: The Browser executes the eventHandler that renders the notes on display
