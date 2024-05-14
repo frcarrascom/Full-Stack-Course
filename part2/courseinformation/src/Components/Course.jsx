@@ -8,7 +8,6 @@ const Course = ({ courses }) => {
     <div>
       {
         courses.map((course => {
-          console.log(course.name)
           return (
             <div key={course.id}>
               <Header name={course.name} />
